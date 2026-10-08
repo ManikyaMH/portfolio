@@ -2,7 +2,7 @@
 
 Personal portfolio website for Manikya M Halingali, Software Engineer.
 
-🌐 **Live Site:** [https://yourusername.github.io/portfolio](https://yourusername.github.io/portfolio)
+🌐 **Live Site:** [https://ManikyaMH.github.io/portfolio](https://ManikyaMH.github.io/portfolio)
 
 ## Tech Stack
 - Pure HTML5 + CSS3 (no frameworks, no build tools)
