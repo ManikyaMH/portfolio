@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manikya M Halingali — Software Engineer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --surface2: #252840;
+      --border: #2e3148;
+      --text: #e8eaf6;
+      --muted: #9399b8;
+      --accent: #7c5cd8;
+      --accent2: #3b82d4;
+      --green: #22c55e;
+      --font: -apple-system, "Segoe UI", system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15, 17, 23, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 60px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 1.1rem; color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    section { padding: 90px 5% 60px; }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 60px;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,92,216,0.12) 0%, transparent 70%);
+    }
+    .hero-inner { max-width: 960px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(124,92,216,0.15);
+      border: 1px solid rgba(124,92,216,0.4);
+      color: var(--accent);
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.1;
+      background: linear-gradient(135deg, #e8eaf6 30%, #7c5cd8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: var(--accent2); font-weight: 500; margin-bottom: 24px;
+    }
+    .hero-bio {
+      color: var(--muted); max-width: 680px; font-size: 0.97rem;
+      margin-bottom: 36px; line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: #6b4dc4; }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-meta {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      margin-top: 40px; padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.87rem; }
+    .meta-item svg { flex-shrink: 0; }
+
+    /* ── SECTION TITLE ── */
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 700;
+      margin-bottom: 40px; line-height: 1.2;
+    }
+    .section-title span { color: var(--accent); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .about-text { color: var(--muted); line-height: 1.9; }
+    .strengths-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px; text-align: center;
+    }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── EDUCATION ── */
+    .edu-timeline { position: relative; padding-left: 28px; }
+    .edu-timeline::before {
+      content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .edu-item {
+      position: relative; margin-bottom: 36px;
+    }
+    .edu-dot {
+      position: absolute; left: -24px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg);
+    }
+    .edu-degree { font-weight: 700; font-size: 1.05rem; }
+    .edu-school { color: var(--accent2); font-size: 0.93rem; margin: 4px 0; }
+    .edu-meta { color: var(--muted); font-size: 0.85rem; }
+    .edu-cgpa {
+      display: inline-block; margin-top: 8px;
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3);
+      color: var(--green); padding: 2px 10px; border-radius: 12px; font-size: 0.82rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 24px; }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .project-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(124,92,216,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .project-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .project-stack { color: var(--accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px; }
+    .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.75; margin-bottom: 16px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-tag {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 2px 10px; border-radius: 6px; font-size: 0.78rem; color: var(--muted);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+    }
+    .skill-category {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-pill {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 5px 12px; border-radius: 20px;
+      font-size: 0.83rem; color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .skill-pill:hover { border-color: var(--accent); }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--surface); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .cert-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 22px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .cert-icon {
+      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(59,130,212,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cert-name { font-weight: 600; font-size: 0.93rem; margin-bottom: 4px; }
+    .cert-issuer { color: var(--muted); font-size: 0.82rem; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 20px;
+      text-decoration: none; color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-item-icon {
+      width: 38px; height: 38px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-item-label { font-size: 0.78rem; color: var(--muted); }
+    .contact-item-value { font-weight: 600; font-size: 0.92rem; }
+    .contact-right { color: var(--muted); line-height: 1.9; }
+    .lang-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      text-align: center; padding: 24px 5%;
+      color: var(--muted); font-size: 0.82rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      nav { padding: 0 4%; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">MMH</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Open to Opportunities</div>
+    <h1 class="hero-name">Manikya M Halingali</h1>
+    <p class="hero-title">Software Engineer &nbsp;·&nbsp; Systems &amp; Full-Stack &nbsp;·&nbsp; Cloud Enthusiast</p>
+    <p class="hero-bio">
+      Detail-oriented Computer Science Engineering graduate with hands-on experience in system-level
+      programming, UNIX networking, cloud fundamentals, and full-stack web applications. Passionate
+      about Linux internals, high-performance backends, and solving real-world engineering problems
+      with clean, maintainable code.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h6l2 3H21a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+        View Projects
+      </a>
+      <a href="#contact" class="btn btn-outline">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get In Touch
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bangalore, Karnataka
+      </div>
+      <div class="meta-item">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.49 2 2 0 0 1 3.58 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.02-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+        +91 6360421662
+      </div>
+      <div class="meta-item">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        manikyamh333@gmail.com
+      </div>
+      <div class="meta-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        linkedin.com/in/manikya-halingali-227409214
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-text">
+          I am a Computer Science Engineering graduate from Bapuji Institute of Engineering and Technology,
+          Davangere. My engineering journey has been shaped by a deep curiosity for how systems work under
+          the hood — from OS internals and raw socket programming to full-stack web applications and cloud
+          deployments.
+        </p>
+        <br/>
+        <p class="about-text">
+          I enjoy bridging the gap between low-level systems thinking and practical software delivery.
+          Whether it is designing relational schemas, writing Python automation scripts, or building
+          multi-user web platforms, I focus on clean architecture and maintainable code. I am actively
+          exploring cloud architecture, Linux internals, and backend performance engineering.
+        </p>
+        <div class="strengths-list" style="margin-top:24px;">
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Clean Coding</span>
+          <span class="tag">Analytical Thinking</span>
+          <span class="tag">Fast Learning</span>
+          <span class="tag">Debugging</span>
+          <span class="tag">System Internals</span>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">7.1</div>
+          <div class="stat-label">CGPA / 10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Academic Background</div>
+    <h2 class="section-title">My <span>Education</span></h2>
+    <div class="edu-timeline">
+
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-degree">B.E. Computer Science &amp; Engineering</div>
+        <div class="edu-school">Bapuji Institute of Engineering and Technology, Davangere</div>
+        <div class="edu-meta">2021 – 2025</div>
+        <div class="edu-cgpa">CGPA: 7.1 / 10</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-dot" style="background:var(--accent2);"></div>
+        <div class="edu-degree">Pre-University — Science</div>
+        <div class="edu-school">Oxford PU Science College, Bijapur</div>
+        <div class="edu-meta">2021</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-dot" style="background:var(--green);"></div>
+        <div class="edu-degree">SSLC (10th Standard)</div>
+        <div class="edu-school">K R Lakkam School, Mudhol</div>
+        <div class="edu-meta">2019</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">What I've Built</div>
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-name">Online College Attendance System</div>
+            <div class="project-stack">Web · Database · CLI Dashboard</div>
+          </div>
+          <div class="project-icon">
+            <svg width="20" height="20" fill="none" stroke="#7c5cd8" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Web-based attendance management system to record, track, and analyse student attendance in real
+          time. Features secure login, automated attendance marking, and a live dashboard displaying
+          real-time statistics via both CLI and web interfaces.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Secure Login</span>
+          <span class="project-tag">Database Storage</span>
+          <span class="project-tag">Real-time Analytics</span>
+          <span class="project-tag">CLI Dashboard</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-name">Intelligent Seminar Scheduling System</div>
+            <div class="project-stack">Python · MySQL · HTML · CSS</div>
+          </div>
+          <div class="project-icon">
+            <svg width="20" height="20" fill="none" stroke="#7c5cd8" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          End-to-end system for seminar registration, slot allocation, and automated scheduling.
+          Implemented a conflict-free scheduling algorithm, faculty-student mapping, feedback analytics,
+          and improved backend performance using indexed queries and optimized transaction control.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Scheduling Algorithm</span>
+          <span class="project-tag">Form Validation</span>
+          <span class="project-tag">Query Optimization</span>
+          <span class="project-tag">Analytics Reports</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-name">Art Gallery Management System</div>
+            <div class="project-stack">PHP · MySQL · CSS · Java</div>
+          </div>
+          <div class="project-icon">
+            <svg width="20" height="20" fill="none" stroke="#7c5cd8" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Multi-user web platform for artwork cataloging, order requests, inventory updates, and sales
+          history. Includes admin approval workflows, invoice generation, user authentication, and
+          category-based filtering. Managed complete SDLC from UI design through deployment on XAMPP.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Multi-user Auth</span>
+          <span class="project-tag">Invoice Generation</span>
+          <span class="project-tag">SDLC</span>
+          <span class="project-tag">XAMPP</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <div class="project-name">AI Sports Hub</div>
+            <div class="project-stack">Centralized Sports Management System</div>
+          </div>
+          <div class="project-icon">
+            <svg width="20" height="20" fill="none" stroke="#7c5cd8" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Digital sports networking ecosystem enabling player registration, resume uploads,
+          coach-player communication, and performance tracking. Integrated resume parsing logic to
+          extract key player attributes automatically. Designed responsive, intuitive frontend layouts
+          supporting all screen sizes.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Resume Parsing</span>
+          <span class="project-tag">Responsive UI</span>
+          <span class="project-tag">Performance Tracking</span>
+          <span class="project-tag">Communication Module</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Technical Expertise</div>
+    <h2 class="section-title">Skills &amp; <span>Technologies</span></h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-category">Programming Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">C</span>
+          <span class="skill-pill">C++</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">Python</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-category">Systems &amp; Linux</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">Unix</span>
+          <span class="skill-pill">Shell Scripting</span>
+          <span class="skill-pill">OS Concepts</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-category">Networking</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Unix Networking</span>
+          <span class="skill-pill">Raw Sockets</span>
+          <span class="skill-pill">TCP/IP</span>
+          <span class="skill-pill">Protocol Analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-category">Cloud</div>
+        <div class="skill-pills">
+          <span class="skill-pill">AWS</span>
+          <span class="skill-pill">Cloud Computing</span>
+          <span class="skill-pill">Deployment Workflows</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-category">Databases</div>
+        <div class="skill-pills">
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">NoSQL</span>
+          <span class="skill-pill">DBMS</span>
+          <span class="skill-pill">Query Optimization</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-category">Web &amp; Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">PHP</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">GitHub</span>
+          <span class="skill-pill">XAMPP</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp; <span>Training</span></h2>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="18" height="18" fill="none" stroke="#3b82d4" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <div class="cert-name">Full Stack Development with Python</div>
+          <div class="cert-issuer">Destination Technologies</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="18" height="18" fill="none" stroke="#3b82d4" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <div class="cert-name">Python Programming Fundamentals</div>
+          <div class="cert-issuer">Programming Certification</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="18" height="18" fill="none" stroke="#3b82d4" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <div class="cert-name">Artificial Intelligence &amp; Machine Learning</div>
+          <div class="cert-issuer">Supermentr</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title">Get In <span>Touch</span></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+
+        <a class="contact-item" href="mailto:manikyamh333@gmail.com">
+          <div class="contact-item-icon" style="background:rgba(124,92,216,0.15);">
+            <svg width="18" height="18" fill="none" stroke="#7c5cd8" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">manikyamh333@gmail.com</div>
+          </div>
+        </a>
+
+        <a class="contact-item" href="tel:+916360421662">
+          <div class="contact-item-icon" style="background:rgba(59,130,212,0.15);">
+            <svg width="18" height="18" fill="none" stroke="#3b82d4" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.49 2 2 0 0 1 3.58 2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.02-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17.5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">+91 6360421662</div>
+          </div>
+        </a>
+
+        <a class="contact-item" href="https://linkedin.com/in/manikya-halingali-227409214" target="_blank" rel="noopener noreferrer">
+          <div class="contact-item-icon" style="background:rgba(34,197,94,0.1);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-value">manikya-halingali-227409214</div>
+          </div>
+        </a>
+
+      </div>
+      <div class="contact-right">
+        <p>
+          I am currently open to full-time software engineering roles, internships, and collaborative
+          projects — especially in backend development, systems programming, and cloud infrastructure.
+        </p>
+        <br/>
+        <p>
+          Feel free to reach out for opportunities, technical discussions, or just to connect. I respond
+          to all messages promptly.
+        </p>
+        <div class="lang-list" style="margin-top:20px;">
+          <span class="tag">🗣 English</span>
+          <span class="tag">🗣 Kannada</span>
+          <span class="tag">🗣 Hindi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Manikya M Halingali &nbsp;·&nbsp; Bangalore, Karnataka &nbsp;·&nbsp; Built with passion for clean engineering</p>
+</footer>
+
+</body>
+</html>
